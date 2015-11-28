@@ -1,0 +1,18 @@
+/*  humanstxt.org/  */
+
+/*  TEAM  */
+
+Name: <insert name>
+Site: <personal site or contact info>
+Twitter: <twitter handle>
+Location: <city, country>
+
+/*  THANKS  */
+
+Name: <name or url>
+
+/*  SITE  */
+
+Last update: <YYYY/MM/DD>
+Standards: <HTML5, CSS3, etc>
+Components: <jQuery, etc>
