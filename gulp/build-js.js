@@ -6,6 +6,5 @@ module.exports = function (paths, gulp, gulpModules, environment) {
             .pipe(environment.production ? gulpModules.rename({extname: '.min.js'}) : gulpModules.gutil.noop())
             .pipe(gulp.dest(paths.buildDir + '/' + paths.jsDir))
             .pipe(gulpModules.notify({ message: 'JS build task finished.', onLast: true}));
-
     };
 };

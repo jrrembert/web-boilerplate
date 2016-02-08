@@ -1,9 +1,9 @@
 // ==========================================
 //          Gulpfile boilerplate.
 //
-// Author: J. Ryan Rembert
+// Author:  J. Ryan Rembert
 // Website: https://github.com/jrrembert
-//
+// Gulp:    http://gulpjs.com/
 // ==========================================
 
 // ==========================================
