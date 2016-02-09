@@ -90,6 +90,6 @@ gulp.task('default',
           ['serve', 'build-html', 'build-js', 'build-css'],
           function() { return; }, {
               options: {
-                  'production': 'Serve files from build directory'
+                  'production': 'Run all scripts with `production` flag'
               }
           });
