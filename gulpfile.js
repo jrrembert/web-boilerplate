@@ -35,9 +35,10 @@ var gulpModules = {
 // ==========================================
 
 var paths = {
-    buildDir: './build',
-    cssDir: './css',
-    jsDir: './js'
+    buildDir: 'build',
+    cssDir: 'css',
+    jsDir: 'js',
+    devDir: '.'
 };
 
 // ==========================================
@@ -53,7 +54,7 @@ var environment = {
 // Gulp tasks
 // ==========================================
 
-gulp.task('clean', 'Delete build directory.', function(callback) {
+gulp.task('clean', 'Delete build directory', function(callback) {
     gulpModules.del([paths.buildDir], callback);
 });
 

@@ -1,6 +1,6 @@
 module.exports = function (paths, gulp, gulpModules, environment) {
     return function() {
-        return gulp.src('css/**/*.css')
+        return gulp.src(paths.devDir + '/' + paths.cssDir + '/**/*.css')
             .pipe(gulpModules.autoprefixer({browsers: ['last 2 versions', '> 5%'], cascade: false}))
             .on('error', gulpModules.notify.onError("Error: <%= error.message %>"))
             .pipe(gulpModules.notify({ message: 'Autoprefixing finished.', onLast: true}))
