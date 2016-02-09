@@ -8,6 +8,7 @@ module.exports = function (paths, gulp, gulpModules, environment) {
             .on('error', gulpModules.notify.onError("Error: <%= error.message %>"))
             .pipe(environment.production ? gulpModules.rename({extname: '.min.css'}) : gulpModules.gutil.noop())
             .pipe(gulp.dest(paths.buildDir + '/' + paths.cssDir))
+            .pipe(gulpModules.browsersync.stream())
             .pipe(gulpModules.notify({ message: 'CSS build task finished.', onLast: true}));
     };
 };

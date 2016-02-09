@@ -6,6 +6,7 @@ module.exports = function (paths, gulp, gulpModules, environment) {
             .on('error', gulpModules.notify.onError("Error: <%= error.message %>"))
             .pipe(environment.production ? gulpModules.rename({extname: '.min.js'}) : gulpModules.gutil.noop())
             .pipe(gulp.dest(paths.buildDir + '/' + paths.jsDir))
+            .pipe(gulpModules.browsersync.stream())
             .pipe(gulpModules.notify({ message: 'JS build task finished.', onLast: true}));
     };
 };
