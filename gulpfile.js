@@ -10,7 +10,10 @@
 // Dependencies
 // ==========================================
 
-var gulp = require('gulp');
+var gulp = require('gulp-help')(require('gulp'), {
+    description: 'Help menu.'
+});
+
 var gulpModules = {
     autoprefixer: require('gulp-autoprefixer'), // Add browser-specific prefixes to CSS
     browsersync: require('browser-sync'),       // Sync and reload browser on file changes.
@@ -26,10 +29,6 @@ var gulpModules = {
     gutil: require('gulp-util')                 // Utilities for Gulp plugins
 
 };
-
-require('gulp-help')(gulp, {
-    description: 'Help menu.'
-});
 
 // ==========================================
 // Project paths - tweak vars as needed
@@ -58,9 +57,9 @@ gulp.task('clean', 'Delete build directory.', function(callback) {
     gulpModules.del([paths.buildDir], callback);
 });
 
-gulp.task('build-js', 'Minify JS', require('./gulp/build-js')(paths, gulp, gulpModules, environment));
-gulp.task('build-css', 'Minify CSS', require('./gulp/build-css')(paths, gulp, gulpModules, environment));
-gulp.task('build-html', 'Rebuild HTML to use minified JS and CSS', require('./gulp/build-html')(paths, gulp, gulpModules, environment));
-gulp.task('serve', 'Starts static web server to monitor file changes and update browser accordingly', require('./gulp/serve')(paths, gulp, gulpModules, environment));
+gulp.task('build-js', 'Concat JS', require('./gulp/build-js')(paths, gulp, gulpModules, environment), {options: {'production': 'Minify and rename JS'}});
+gulp.task('build-css', 'Add browser-specific prefixes to CSS', require('./gulp/build-css')(paths, gulp, gulpModules, environment), {options: {'production': 'Minify and rename CSS'}});
+gulp.task('build-html', 'Build HTML', require('./gulp/build-html')(paths, gulp, gulpModules, environment), {options: {'production': 'Replace JS/CSS references with minified filenames.'}});
+gulp.task('serve', 'Starts static web server to monitor file changes in your project root and reloads browser', require('./gulp/serve')(paths, gulp, gulpModules, environment), {options: {'production': 'Serve files from build directory'}});
 
-gulp.task('default', 'Build files and fire up browser-sync web server', ['serve', 'build-html', 'build-js', 'build-css']);
+gulp.task('default', 'Run all build tasks and start static file server', ['serve', 'build-html', 'build-js', 'build-css'], function() { return; }, {options: {'production': 'Serve files from build directory'}});
