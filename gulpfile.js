@@ -57,9 +57,39 @@ gulp.task('clean', 'Delete build directory.', function(callback) {
     gulpModules.del([paths.buildDir], callback);
 });
 
-gulp.task('build-js', 'Concat JS', require('./gulp/build-js')(paths, gulp, gulpModules, environment), {options: {'production': 'Minify and rename JS'}});
-gulp.task('build-css', 'Add browser-specific prefixes to CSS', require('./gulp/build-css')(paths, gulp, gulpModules, environment), {options: {'production': 'Minify and rename CSS'}});
-gulp.task('build-html', 'Build HTML', require('./gulp/build-html')(paths, gulp, gulpModules, environment), {options: {'production': 'Replace JS/CSS references with minified filenames.'}});
-gulp.task('serve', 'Starts static web server to monitor file changes in your project root and reloads browser', require('./gulp/serve')(paths, gulp, gulpModules, environment), {options: {'production': 'Serve files from build directory'}});
-
-gulp.task('default', 'Run all build tasks and start static file server', ['serve', 'build-html', 'build-js', 'build-css'], function() { return; }, {options: {'production': 'Serve files from build directory'}});
+gulp.task('build-js',
+          'Concat JS',
+          require('./gulp/build-js')(paths, gulp, gulpModules, environment), {
+              options: {
+                  'production': 'Minify and rename JS'
+              }
+          });
+gulp.task('build-css',
+          'Add browser-specific prefixes to CSS',
+          require('./gulp/build-css')(paths, gulp, gulpModules, environment), {
+              options: {
+                  'production': 'Minify and rename CSS'
+              }
+          });
+gulp.task('build-html',
+          'Build HTML',
+          require('./gulp/build-html')(paths, gulp, gulpModules, environment), {
+              options: {
+                  'production': 'Replace JS/CSS references with minified filenames.'
+              }
+          });
+gulp.task('serve',
+          'Starts static web server, monitors file changes in your root and reloads browser',
+          require('./gulp/serve')(paths, gulp, gulpModules, environment), {
+              options: {
+                  'production': 'Serve files from build directory'
+              }
+          });
+gulp.task('default',
+          'Run all build tasks and start static file server',
+          ['serve', 'build-html', 'build-js', 'build-css'],
+          function() { return; }, {
+              options: {
+                  'production': 'Serve files from build directory'
+              }
+          });
